@@ -1,0 +1,28 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+
+{% block title %}
+    Administrador usuarios
+{% endblock title %}
+
+{% block titulo %}
+<div class="col-6">
+    <h1 class="m-0">Empleo</h1>
+  </div><!-- /.col -->
+{% endblock titulo %}
+
+{% block contenido %}
+
+<form method="post" >
+
+  {% csrf_token %}
+  {{ form.as_p }}
+ 
+     <button type="submit" class="btn btn-primary col-12 ">Guardar</button>
+
+</form>
+
+
+
+
+{% endblock contenido %}

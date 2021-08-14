@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+      
+<div class="d-flex bd-highlight mb-3">
+  <div class="me-auto p-2 bd-highlight"></div>
+    <div id="carouselExampleSlidesOnly" class="carousel slide col-sm-10" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" >
+            <img src="{% static 'images/1.jpg' %}"  class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item" >
+            <img src="{% static 'images/6.jpg' %}"  class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+            <img src="{% static 'images/7.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+    <div class="p-2 bd-highlight"></div>
+    <div class="p-2 bd-highlight"></div>
+    <div class="p-2 bd-highlight"></div>
+    <div class="p-2 bd-highlight"></div>
+  </div>
+
+ 
+
+
+
+
+    <section id="scroll">
+     
+
+
+
+    <div class="container px-5">
+          
+          <div class="row gx-5 align-items-center">
+              
+              <div class="col-lg-6 order-lg-2">
+                  <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'images/ISTL_LOGO.jpg' %}" alt="3" /></div>
+              </div>
+              <div class="col-lg-6 order-lg-1">
+                  <div class="p-5">
+                      <h2 class="display-4">Acerca de nosotros</h2>
+                      <p>El sistema de seguimiento a graduados se ha creado con el fin de manener a los graduados de nuestra institución
+                       vinculados a nuestra comunidad, y además conocer el nivel de satisfacción obtenido al ocupar y ser parte de la institución</p>    
+                  </div>       
+              </div>
+              
+   
+     
+  </section>
+  <!-- Content section 2-->
+  <section>
+      <div class="container px-5">
+          <div class="row gx-5 align-items-center">
+              <div class="col-lg-6">
+                  <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'images/Dalton1.jpg' %}" alt="6" /></div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="p-5">
+                      <h2 class="display-4">Docente Encargado</h2>
+                      <h3>Dalton Arturo Ricaurte Songor, Lic.</h3>
+                      <p>Licenciado en Ciencias de la Educación Mención Lengua Castellana y Literatura
+                      <br>  dricaurte@institutos.gob.ec / daltonricaurte2014@hotmail.com
+                      </p>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Content section 3-->
+  <section>
+      <div class="container px-5">
+          <div class="row gx-5 align-items-center">
+              <div class="col-lg-6 order-lg-2">
+                  <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'images/13.jpg' %}" alt="..." /></div>
+              </div>
+              <div class="col-lg-6 order-lg-1">
+                  <div class="p-5">
+                      <h2 class="display-4">Misión</h2>
+                      <p>La Unidad de Ex alumnos Instituto Superior Tecnológico Loja tiene como misión promover, apoyar y desarrollar actividades que 
+                          favorezcan e incrementen el sentido de pertenencia de los ex alumnos, mediante un contacto permanente que acompañe su impacto y desarrollo profesional, social, cultural, laboral y empresarial.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+    <!-- Content section 2-->
+    <section>
+      <div class="container px-5">
+          <div class="row gx-5 align-items-center">
+              <div class="col-lg-6">
+                  <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'images/graduado.png' %}" alt="" /></div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="p-5">
+                      <h2 class="display-4">Visión</h2>
+                      <p>En el 2023 la unidad de ex alumnos contará con un sistema de comunicación establecido eficaz y eficiente con los ex alumnos
+                       para la participación dentro y fuera  de la Institución, siendo piezas fundamentales dentro de la sociedad.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}" ></script>
+    
+
+  
+{% endblock contenido %}
+  

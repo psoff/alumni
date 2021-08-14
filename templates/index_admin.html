@@ -1,0 +1,106 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+
+
+{% block title %}
+    Administrador alumni
+{% endblock title %}
+
+
+{% block titulo %}
+<div class="col-sm-6">
+    <h1 class="m-0">Inicio</h1>
+  </div><!-- /.col -->
+{% endblock titulo %}
+
+
+{% block contenido %}
+<div class="row">
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h4>Usuarios</h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h4> Eventos </h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-calendar-week"></i>
+        </div>
+        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h4> Empleos</h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-clipboard-list"></i>
+        </div>
+        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+      <!-- small box -->
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h4>Emprendimientos</h4>
+        </div>
+        <div class="icon">
+          <i class="fas fa-store"></i>
+        </div>
+        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+
+  <h4>Listado de alumnos</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Cedula </th>
+        <th scope="col">Nombre </th>
+        <th scope="col">Apellido </th>
+        <th scope="col">Correo</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Tecnología</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% if objeto %}
+      {% for objeto in objeto %} 
+      <tr>
+        <th scope="col">{{ objeto.cedula }}</th>
+        <th scope="col">{{ objeto.nombre }}</th>
+        <th scope="col">{{ objeto.apellido }}</th>
+        <th scope="col">{{ objeto.correo }}</th>
+        <th scope="col">{{ objeto.celular }}</th>
+        <th scope="col">{{ objeto.carrera }}</th>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+
+{% endblock contenido %}
+    
+    
+    
+    

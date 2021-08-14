@@ -1,0 +1,33 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+
+{% block title %}
+    Administrador usuarios
+{% endblock title %}
+
+{% block titulo %}
+<div class="col-sm-6 mb-4">
+    <h1 class="m-0">Emprendimientos</h1>
+  </div><!-- /.col -->
+{% endblock titulo %}
+
+{% block contenido %}
+
+<form method="post" >
+
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="formFile" class="form-label">Portada</label>
+    <input class="form-control" type="file" id="formFile">
+  </div>
+  {{ form }}
+
+  <br>
+     <button type="submit" class="btn btn-primary mb-3 col-12">Guardar</button>
+   
+</form>
+
+
+
+
+{% endblock contenido %}

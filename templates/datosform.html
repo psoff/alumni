@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% if messages %}
+            
+{% for messages in messages  %}
+<div class = " alert alert-success notification {{ messages.tags }}" role="alert">
+  {{messages}}
+</div>
+{% endfor %}
+  
+{% endif %} 
+
+{% block contenido %}
+
+<form method="post" >
+
+    {% csrf_token %}
+    {{ form }}
+    
+
+       <button type="submit" class="btn btn-primary col-12">Guardar</button>
+     
+  </form>
+    
+
+{% endblock contenido %}

@@ -1,0 +1,28 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+
+{% block title %}
+    Graduado
+{% endblock title %}
+
+{% block titulo %}
+<div class="col-sm-6">
+    <h1 class="m-0">Registrar Graduado</h1>
+  </div><!-- /.col -->
+{% endblock titulo %}
+
+{% block contenido %}
+
+<form method="post" >
+
+  {% csrf_token %}
+  {{ form }}
+  <br>
+     <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+   
+</form>
+
+
+
+
+{% endblock contenido %}
