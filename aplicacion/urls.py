@@ -29,4 +29,6 @@ urlpatterns =[
     path('usuarioform',usuarioform, name = 'usuarioform'),
     path('graduadoeditar/<id>/' ,graduadoeditar, name='graduadoeditar'),
     path('graduadoeliminar/<id>/' ,graduadoeliminar, name='graduadoeliminar'),
+    path('admineditar/<id>/' ,admineditar, name='admineditar'),
+    path('admineliminar/<id>/' ,admineliminar, name='admineliminar'),
 ]

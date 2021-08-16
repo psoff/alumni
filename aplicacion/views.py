@@ -59,7 +59,9 @@ def paginadmin(request):
 
 def estadistica(request):
     objeto = Graduado.objects.all()
-    contexto = {'objeto':objeto}
+    object = Administrador.objects.all()
+    contexto = {'objeto':objeto,
+        'object':object}
     return render(request, 'estadistica.html',contexto)   
 
 def baseadmin(request):
@@ -171,6 +173,24 @@ def graduadoeliminar(request,id):
 		object.delete()
 		return redirect('estadistica')
 	return render(request,'graduadoeliminar.html', {'object':object})
+
+def admineditar(request,id):
+	object= Administrador.objects.get(id=id)
+	if request.method == 'GET':
+		form = administradorForm(instance=object)	
+	else:
+		form = administradorForm(request.POST,instance=object)
+		if form.is_valid():
+			form.save()
+		return redirect('estadistica')
+	return render(request,'administradorform.html', {'form':form})
+
+def admineliminar(request,id):
+	object= Administrador.objects.get(id=id)
+	if request.method == 'POST':
+		object.delete()
+		return redirect('estadistica')
+	return render(request,'admineliminar.html', {'object':object})    
 
 def graficopastel(request, genero):
     object = Graduado.objects.get(genero=genero).count()

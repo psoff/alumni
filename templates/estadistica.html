@@ -1,0 +1,221 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+
+
+{% block title %}
+    Administrador alumni
+{% endblock title %}
+
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'lib/datables/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'lib/datatables/css/dataTables.bootstrap5.min.css' %}">    
+
+{% endblock head %}
+  
+
+{% block titulo %}
+<div class="col-sm-6">
+    <h1 class="m-0">Estadistica</h1>
+  </div><!-- /.col -->
+{% endblock titulo %}
+
+
+{% block contenido %}
+<div>
+
+</div>
+<table id="graduado" class="table table-striped" style="width:100%">
+  <thead>
+      <tr>
+        <th scope="col">Cedula </th>
+        <th scope="col">Nombre </th>
+        <th scope="col">Apellido </th>
+        <th scope="col">Correo</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Carrera</th>
+        <th scope="col">Acciones</th>
+      </tr>
+  </thead>
+  <tbody>
+  
+    {% if objeto %}
+    {% for objeto in objeto %} 
+      <tr>
+        <th scope="col">{{ objeto.cedula }}</th>
+        <th scope="col">{{ objeto.nombre }}</th>
+        <th scope="col">{{ objeto.apellido }}</th>
+        <th scope="col">{{ objeto.correo }}</th>
+        <th scope="col">{{ objeto.celular }}</th>
+        <th scope="col">{{ objeto.carrera }}</th>
+        <th >
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a class="btn btn-primary" href="{% url 'graduadoeditar' objeto.id %}" role="button">Editar</a>
+        <a class="btn btn-danger" href="{% url 'graduadoeliminar' objeto.id %}" role="button">Eliminar</a>
+        </div>
+      </th>
+  
+      </tr>
+      {% endfor %}
+      {% endif %}
+
+  </tbody>
+  <tfoot>
+      <tr>
+        <th scope="col">Cedula </th>
+        <th scope="col">Nombre </th>
+        <th scope="col">Apellido </th>
+        <th scope="col">Correo</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Carrera</th>
+        <th scope="col">Acciones</th>
+      </tr>
+  </tfoot>
+</table>
+<script src="{% static 'lib/datatables/js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'lib/datatables/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/datatables/js/dataTables.bootstrap5.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('#graduado').DataTable();
+    } ); 
+</script>
+
+<table id="administrador" class="table table-striped" style="width:100%">
+  <thead>
+      <tr>
+        <th scope="col">Cedula </th>
+        <th scope="col">Nombre </th>
+        <th scope="col">Apellido </th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+  </thead>
+  <tbody>
+  
+    {% if object %}
+    {% for object in object %} 
+      <tr>
+        <th scope="col">{{ object.cedula }}</th>
+        <th scope="col">{{ object.nombre }}</th>
+        <th scope="col">{{ object.apellido }}</th>
+        <th scope="col">{{ object.correo }}</th>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+        <a class="btn btn-primary" href="{% url 'admineditar' objet.id %}" role="button">Editar</a>
+        <a class="btn btn-danger" href="{% url 'admineliminar' objet.id %}" role="button">Eliminar</a>
+        </div>
+      </th>
+  
+      </tr>
+      {% endfor %}
+      {% endif %}
+
+  </tbody>
+  <tfoot>
+      <tr>
+        <th scope="col">Cedula </th>
+        <th scope="col">Nombre </th>
+        <th scope="col">Apellido </th>
+        <th scope="col">Correo</th>
+        <th scope="col">Acciones</th>
+      </tr>
+  </tfoot>
+</table>
+<script src="{% static 'lib/datatables/js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'lib/datatables/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'lib/datatables/js/dataTables.bootstrap5.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+        $('#administrador').DataTable();
+    } ); 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="conteiner-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="container"></div>
+    </div>
+  </div>
+
+</div>
+<script type="application/javascript">
+  Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Browser market shares in January, 2018'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Chrome',
+            y: 61.41,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Internet Explorer',
+            y: 11.84
+        }, {
+            name: 'Firefox',
+            y: 10.85
+        }, {
+            name: 'Edge',
+            y: 4.67
+        }, {
+            name: 'Safari',
+            y: 4.18
+        }, {
+            name: 'Sogou Explorer',
+            y: 1.64
+        }, {
+            name: 'Opera',
+            y: 1.6
+        }, {
+            name: 'QQ',
+            y: 1.2
+        }, {
+            name: 'Other',
+            y: 2.61
+        }]
+    }]
+  });
+</script>
+
+{% endblock contenido %}
+
