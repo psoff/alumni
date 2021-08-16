@@ -59,7 +59,14 @@ def paginadmin(request):
 
 def estadistica(request):
     objeto = Graduado.objects.all()
-    contexto = {'objeto':objeto}
+    avg_masculino = objeto.filter(genero='Masculino').count() / objeto.count() * 100
+    avg_femenino = objeto.filter(genero='Femenino').count() / objeto.count() * 100
+    print(avg_femenino)
+    contexto = {
+        'objeto':objeto,
+        'avg_masculino': round(avg_masculino),
+        'avg_femenino': round(avg_femenino),
+        }
     return render(request, 'estadistica.html',contexto)   
 
 def baseadmin(request):

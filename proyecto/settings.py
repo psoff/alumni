@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zf9893yw6_lpv^6m5^b9+-bx2p$1#iktijv*burgruui9@@2fk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -89,6 +89,7 @@ DATABASES = {
         'NAME': 'alumni',
         'USER': 'postgres',
         'PASSWORD': 'soff_pass21',
+        'PASSWORD': 'admin123',
         'HOST': 'localhost',
         'PORT': 5432    ,
     }
@@ -135,7 +136,10 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 # IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [ BASE_DIR / "static",]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'media'),
+)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
