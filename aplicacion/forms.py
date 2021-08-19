@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 
-
 class GraduadoForm(forms.ModelForm):
     class Meta:
         model = Graduado
@@ -25,7 +24,7 @@ class GraduadoForm(forms.ModelForm):
             
         }
 
-class administradorForm(forms.ModelForm):
+class AdministradorForm(forms.ModelForm):
     class Meta:
         model = Administrador
         fields =['user',
@@ -134,7 +133,7 @@ class UserForm(forms.ModelForm):
             'password': 'Contraseña',
             'first_name': 'Nombre',
             'last_name': 'Apellido',
-            'is_staff': 'Es administrador',
+            'is_staff': 'Administrador',
         }
         # then, in widgets you can define the input type of the field and give
         # attributes to each one
@@ -143,7 +142,7 @@ class UserForm(forms.ModelForm):
             'password': forms.PasswordInput(attrs={'class': 'form-control mb-2 col-sm-8'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control mb-2 col-sm-8'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control mb-2 col-sm-8'}),
-            'is_staff': forms.CheckboxInput(attrs={'class': 'form-check-input mb-2 col-sm-1'}),
+            'is_staff': forms.CheckboxInput(attrs={'class': 'form-check-input  col.6'}),
         } 
         help_texts = {k:"" for k in fields}   
 
@@ -198,7 +197,7 @@ class DatosForm(forms.ModelForm):
             'direccion': forms.TextInput(attrs={'class':'form-control '}),
             'celular':forms.TextInput(attrs={'class':'form-control'}),
             'correo':forms.TextInput(attrs={'class':'form-control'}),
-            'f_nacimiento': forms.DateInput(format='%d-%m-%Y'),
+            'f_nacimiento': forms.DateInput(format='%d-%m-%Y', attrs={'class':'form-control'}),
             'nacionalidad': forms.TextInput(attrs={'class':'form-control'}),
             'etnia': forms.Select(attrs={'class':'form-select'}),
             'genero': forms.Select(attrs={'class':'form-select'}),
@@ -207,7 +206,7 @@ class DatosForm(forms.ModelForm):
             'carrera': forms.Select(attrs={'class':'form-select mb-2'}),
             'f_ingreso': forms.DateInput(format='%d-%m-%Y', attrs={'class':'form-control mb-3'} ),
             'f_salida': forms.DateInput(format='%d-%m-%Y', attrs={'class':'form-control mb-3'}),
-            'titulacion': forms.Select(attrs={'class':'form-select mb-3'}),
+            'titulacion': forms.Select(attrs={'class':'form-select mb-5'}),
 
 
         }

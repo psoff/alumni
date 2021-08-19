@@ -6,8 +6,6 @@ from .forms import *
 from django.views.generic import ListView
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.contrib.auth.views import LoginView, LogoutView
-
 
 
 def index(request):
@@ -21,26 +19,30 @@ def informacion(request):
 def base(request):
 
     return render(request,'base.html' ) 
+ 
 
 def emprendimientos(request):
+    objeto= Emprendimiento.objects.all()
+    contexto = {'objeto':objeto}
 
-    return render(request,'emprendimientos.html' )     
-
-def servicio(request):
-
-    return render(request,'servicio.html' )         
-
-def ingresar(request):
-
-	return render(request, 'ingresar.html', ) 
+    return render(request,'emprendimientos.html' , contexto)     
 
 @login_required(login_url='ingresar/')
-def registro(request):
-        if not request.user.is_staff:
-            return HttpResponse("No tienes acceso a esta parte.")
-        return render(request, 'registro.html') 
+def empleos(request):
+    objeto= Empleo.objects.all()
+    contexto = {'objeto':objeto}
+
+    return render(request,'empleos.html', contexto )  
+
+@login_required(login_url='ingresar/')
+def capacitaciones(request):
+    objeto= Capacitacion.objects.all()
+    contexto = {'objeto':objeto}
+
+    return render(request,'capacitaciones.html', contexto )  
 
 
+@login_required(login_url='ingresar/')
 def datosform(request):
     if request.method == 'POST':
         form= DatosForm(request.POST)
@@ -53,15 +55,55 @@ def datosform(request):
     context = {'form': form}            
     return render(request, 'datosform.html', context )   
 
-def paginadmin(request):
 
-	return render(request, 'admin_2.0.html', ) 
 
 def estadistica(request):
     objeto = Graduado.objects.all()
-    object = Administrador.objects.all()
+    admin = Administrador.objects.all()
+    masculino = objeto.filter(genero='Masculino').count() / objeto.count() * 100
+    femenino = objeto.filter(genero='Femenino').count() / objeto.count() * 100
+    agroindustrias = objeto.filter(carrera='Agroindustrias').count() / objeto.count() * 100
+    contabilidad = objeto.filter(carrera='Contabilidad').count() / objeto.count() * 100
+    desarrolloinfantil = objeto.filter(carrera='Desarrollo Infantil').count() / objeto.count() * 100
+    procesamientoalimentos = objeto.filter(carrera='Procesamiento de Alimentos').count() / objeto.count() * 100
+    desarrollosoftware = objeto.filter(carrera='Desarrollo de Software').count() / objeto.count() * 100
+    mecanica = objeto.filter(carrera='Mecánica Automotriz').count() / objeto.count() * 100
+    electricidad = objeto.filter(carrera='Electricidad').count() / objeto.count() * 100
+    seguridad = objeto.filter(carrera= 'Seguridad Ciudadana y Orden Público').count() / objeto.count() * 100
+    mestizo= objeto.filter(etnia='Mestizo').count() / objeto.count() * 100
+    afroecuatoriano= objeto.filter(etnia='Afroecuatoriano').count() / objeto.count() * 100
+    indigena= objeto.filter(etnia='Indígena').count() / objeto.count() * 100
+    blanco= objeto.filter(etnia='Blanco').count() / objeto.count() * 100
+    montubio= objeto.filter(etnia='Montubio').count() / objeto.count() * 100
+    amazonico= objeto.filter(etnia='Amazonico').count() / objeto.count() * 100
+    tesis= objeto.filter(titulacion='Tesis').count() / objeto.count() * 100
+    examen= objeto.filter(titulacion='Examen Complexivo').count() / objeto.count() * 100
+
+ 
     contexto = {'objeto':objeto,
-        'object':object}
+        
+        'masculino': round(masculino),
+        'femenino': round(femenino),
+        'agroindustrias': round(agroindustrias),
+        'contabilidad': round(contabilidad),
+        'desarrolloinfantil': round(desarrolloinfantil),
+        'procesamientoalimentos': round(procesamientoalimentos),
+        'desarrollosoftware': round(desarrollosoftware),
+        'mecanica': round(mecanica),
+        'electricidad': round(electricidad),
+        'seguridad': round(seguridad),
+        'mestizo': round(mestizo),
+        'afroamericano': round(afroecuatoriano),
+        'indigena': round(indigena),
+        'blanco': round(blanco),
+        'montubio': round(montubio),
+        'amazonico': round(amazonico),
+        'tesis': round(tesis),
+        'examen': round(examen),
+
+        }
+
+   
     return render(request, 'estadistica.html',contexto)   
 
 def baseadmin(request):
@@ -69,8 +111,8 @@ def baseadmin(request):
 	return render(request, 'baseadmin.html', )   
 
 def indexadmin(request):
-    objeto = Graduado.objects.all()
-    contexto = {'objeto':objeto}
+    admin= Administrador.objects.all()
+    contexto = {'admin':admin}
     return render(request, 'index_admin.html',contexto)  
 
 def usuarioform(request):
@@ -101,17 +143,17 @@ def graduadoform(request):
     return render(request, 'graduadoform.html', {'form':form})
     
 def administradorform(request):
-    data = { 'form': administradorForm}
+    data = { 'form': AdministradorForm()}
 
     if request.method == 'POST':
-        form = administradorForm(request.POST)
+        form = AdministradorForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data['username']
-            messages.success(request,f'Usuario {username} creado')
-        return redirect ('aplicacion:indexadmin')  
+            nombre= form.cleaned_data['nombre']
+            messages.success(request,f'Usuario {nombre} creado')
+        return redirect ('indexadmin')  
     else:
-        form = GraduadoForm()      
+        form = AdministradorForm()      
     return render(request, 'administradorform.html', {'form':form})    
 
 def capacitacionform(request):
@@ -175,28 +217,23 @@ def graduadoeliminar(request,id):
 	return render(request,'graduadoeliminar.html', {'object':object})
 
 def admineditar(request,id):
-	object= Administrador.objects.get(id=id)
+	admin= Administrador.objects.get(id=id)
 	if request.method == 'GET':
-		form = administradorForm(instance=object)	
+		form = administradorForm(instance=admin)	
 	else:
-		form = administradorForm(request.POST,instance=object)
+		form = administradorForm(request.POST,instance=admin)
 		if form.is_valid():
 			form.save()
 		return redirect('estadistica')
 	return render(request,'administradorform.html', {'form':form})
 
 def admineliminar(request,id):
-	object= Administrador.objects.get(id=id)
+	admin= Administrador.objects.get(id=id)
 	if request.method == 'POST':
-		object.delete()
+		admin.delete()
 		return redirect('estadistica')
-	return render(request,'admineliminar.html', {'object':object})    
+	return render(request,'admineliminar.html', {'admin':admin})    
 
-def graficopastel(request, genero):
-    object = Graduado.objects.get(genero=genero).count()
-
-    return render(request,'estadistica.html', {'object':object})
-      
 
 
 

@@ -14,15 +14,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
-
   </head>
   {% endblock head %}
   <body>
     
     {% block menu %}
-      
-    
-      
+  
     <div class="container">
       <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -30,20 +27,16 @@
         </a>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
           <li><a href="{% url 'index' %}" class="nav-link px-2 link-secondary">Inicio</a></li>
-          <li><a href="{% url 'servicio' %}" class="nav-link px-2 link-secondary">Servicios</a></li>
-          <li><a href="{% url 'emprendimientos' %}" class="nav-link px-2 link-secondary">Emprendimientos</a></li>
+          <li><a href="{% url 'capacitaciones' %}" class="nav-link px-2 link-secondary">Capacitaciones</a></li>
+          <li><a href="{% url 'empleos' %}" class="nav-link px-2 link-secondary">Bolsa de Empleo </a></li>
+          <li><a href="{% url 'emprendimientos' %}" class="nav-link px-2 link-secondary">Emprendimientos de <br> nuestros Alumnos</a></li>
         </ul>
-          <a class="btn btn-primary " href="{% url 'ingresar' %}" role="button">Ingresar</a>
         {% if user.is_authenticated %}
           <li><a href="#">{{ user.username }}</a></li>
-          
           <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Cerrar Sesión </a>
-        
-        {% endif %}
-  
-          
-  
-      
+        {% else %}
+        <a class="btn btn-primary " href="{% url 'ingresar' %}" role="button">Ingresar</a>
+        {% endif %}    
       </header>
     </div> 
     {% endblock menu %}

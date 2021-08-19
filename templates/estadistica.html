@@ -8,214 +8,382 @@
 
 
 {% block head %}
-<link rel="stylesheet" href="{% static 'lib/datables/css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'lib/datatables/css/dataTables.bootstrap5.min.css' %}">    
+
 
 {% endblock head %}
   
 
 {% block titulo %}
-<div class="col-sm-6">
+<div class="col-sm-6 mb-4">
     <h1 class="m-0">Estadistica</h1>
   </div><!-- /.col -->
 {% endblock titulo %}
 
 
 {% block contenido %}
-<div>
 
-</div>
+<h3> Registros de alumnos graduados</h3>
+
+
+<div class="container mb-4">
 <table id="graduado" class="table table-striped" style="width:100%">
   <thead>
       <tr>
-        <th scope="col">Cedula </th>
-        <th scope="col">Nombre </th>
-        <th scope="col">Apellido </th>
-        <th scope="col">Correo</th>
-        <th scope="col">Celular</th>
-        <th scope="col">Carrera</th>
-        <th scope="col">Acciones</th>
+          <th>Cedula</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Celular</th>
+          <th>Carrera</th>
+          <th>Acciones</th>
       </tr>
   </thead>
   <tbody>
-  
     {% if objeto %}
-    {% for objeto in objeto %} 
+    {% for objeto in objeto %}   
+     
       <tr>
-        <th scope="col">{{ objeto.cedula }}</th>
-        <th scope="col">{{ objeto.nombre }}</th>
-        <th scope="col">{{ objeto.apellido }}</th>
-        <th scope="col">{{ objeto.correo }}</th>
-        <th scope="col">{{ objeto.celular }}</th>
-        <th scope="col">{{ objeto.carrera }}</th>
-        <th >
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <a class="btn btn-primary" href="{% url 'graduadoeditar' objeto.id %}" role="button">Editar</a>
-        <a class="btn btn-danger" href="{% url 'graduadoeliminar' objeto.id %}" role="button">Eliminar</a>
-        </div>
-      </th>
-  
+          <td>{{ objeto.cedula }}</td>
+          <td>{{ objeto.nombre }}</td>
+          <td>{{ objeto.apellido }}</td>
+          <td>{{ objeto.correo }}</td>
+          <td>{{ objeto.celular }}</td>
+          <td>{{ objeto.carrera }}</td>
+          <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <a class="btn btn-primary" href="{% url 'graduadoeditar' objeto.id %}" role="button">Editar</a>
+            <a class="btn btn-danger" href="{% url 'graduadoeliminar' objeto.id %}" role="button">Eliminar</a>
+            </div>
+          </td>
       </tr>
-      {% endfor %}
-      {% endif %}
+    
+    {% endfor %}
+    {% endif %}  
 
   </tbody>
   <tfoot>
       <tr>
-        <th scope="col">Cedula </th>
-        <th scope="col">Nombre </th>
-        <th scope="col">Apellido </th>
-        <th scope="col">Correo</th>
-        <th scope="col">Celular</th>
-        <th scope="col">Carrera</th>
-        <th scope="col">Acciones</th>
+          <th>Cedula</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Celular</th>
+          <th>Carrera</th>
+          <th>Acciones</th>
       </tr>
   </tfoot>
 </table>
-<script src="{% static 'lib/datatables/js/jquery-3.3.1.js' %}"></script>
-<script src="{% static 'lib/datatables/js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'lib/datatables/js/dataTables.bootstrap5.min.js' %}"></script>
+</div>
+
+   <!-- Main content -->
+   <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <!-- AREA CHART -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Género</h3>
+            </div>
+            <div class="card-body">
+              <div id="genero"></div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- DONUT CHART -->
+          <div class="card card-danger">
+            <div class="card-header">
+              <h3 class="card-title">Carrera</h3>
+
+            </div>
+            <div class="card-body">
+                    <div id="carrera"></div>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+
+        </div>
+        <!-- /.col (LEFT) -->
+        <div class="col-md-6">
+          <!-- LINE CHART -->
+          <div class="card card-info">
+            <div class="card-header">
+              <h3 class="card-title">Titulación</h3>
+            </div>
+            <div class="card-body" id="titulacion"></div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+          <!-- BAR CHART -->
+          <div class="card card-success">
+            <div class="card-header">
+              <h3 class="card-title">Etnias</h3>
+
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="chart" id="etnias"> </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+   
+
+        </div>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+{% endblock contenido %}
+
+{% block javascripts %}
+{{ block.super }}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/variable-pie.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+
 <script>
     $(document).ready(function() {
         $('#graduado').DataTable();
     } ); 
 </script>
 
-<table id="administrador" class="table table-striped" style="width:100%">
-  <thead>
-      <tr>
-        <th scope="col">Cedula </th>
-        <th scope="col">Nombre </th>
-        <th scope="col">Apellido </th>
-        <th scope="col">Correo</th>
-        <th scope="col">Acciones</th>
-      </tr>
-  </thead>
-  <tbody>
-  
-    {% if object %}
-    {% for object in object %} 
-      <tr>
-        <th scope="col">{{ object.cedula }}</th>
-        <th scope="col">{{ object.nombre }}</th>
-        <th scope="col">{{ object.apellido }}</th>
-        <th scope="col">{{ object.correo }}</th>
-        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-        <a class="btn btn-primary" href="{% url 'admineditar' objet.id %}" role="button">Editar</a>
-        <a class="btn btn-danger" href="{% url 'admineliminar' objet.id %}" role="button">Eliminar</a>
-        </div>
-      </th>
-  
-      </tr>
-      {% endfor %}
-      {% endif %}
-
-  </tbody>
-  <tfoot>
-      <tr>
-        <th scope="col">Cedula </th>
-        <th scope="col">Nombre </th>
-        <th scope="col">Apellido </th>
-        <th scope="col">Correo</th>
-        <th scope="col">Acciones</th>
-      </tr>
-  </tfoot>
-</table>
-<script src="{% static 'lib/datatables/js/jquery-3.3.1.js' %}"></script>
-<script src="{% static 'lib/datatables/js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static 'lib/datatables/js/dataTables.bootstrap5.min.js' %}"></script>
-<script>
-    $(document).ready(function() {
-        $('#administrador').DataTable();
-    } ); 
-</script>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="conteiner-fluid">
-  <div class="row">
-    <div class="col-lg-12">
-      <div id="container"></div>
-    </div>
-  </div>
-
-</div>
+<!-- Script para grafico pastel -->
 <script type="application/javascript">
-  Highcharts.chart('container', {
+  var masculino = parseInt('{{ masculino }}');
+  var femenino = parseInt('{{ femenino }}');
+  Highcharts.chart('genero', {
     chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        type: 'pie'
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
     },
     title: {
-        text: 'Browser market shares in January, 2018'
+      text: 'Estadisticas por género de graduados'
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
     accessibility: {
-        point: {
-            valueSuffix: '%'
-        }
+      point: {
+        valueSuffix: '%'
+      }
     },
     plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
         }
+      }
     },
     series: [{
-        name: 'Brands',
-        colorByPoint: true,
+      name: 'Brands',
+      colorByPoint: true,
+      data: [
+        {
+          name: 'Masculino',
+          y: masculino,
+        }, {
+          name: 'Femenino',
+          y: femenino,
+        }
+      ]
+    }]
+  });
+</script>
+<!-- Script para grafico carreras -->
+<script>
+  var agroindustrias = parseInt('{{ agroindustrias }}');
+  var contabilidad = parseInt('{{ contabilidad }}');
+  var desarrolloinfantil = parseInt('{{ desarrolloinfantil }}');
+  var procesamientoalimentos = parseInt('{{ procesamientoalimentos }}');
+  var desarrollosoftware = parseInt('{{ desarrollosoftware}}');
+  var mecanica = parseInt('{{ mecanica }}');
+  var electricidad = parseInt('{{ electricidad }}');
+  var seguridad = parseInt('{{ seguridad }}');
+  Highcharts.chart('carrera', {
+    chart: {
+        type: 'variablepie'
+    },
+    title: {
+        text: 'Estadisticas por carreras'
+    },
+    tooltip: {
+        headerFormat: '',
+        pointFormat: '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+            'Graduados: <b>{point.y}</b><br/>' 
+    },
+    series: [{
+        minPointSize: 10,
+        innerSize: '20%',
+        zMin: 0,
+        name: 'countries',
         data: [{
-            name: 'Chrome',
-            y: 61.41,
-            sliced: true,
-            selected: true
+            name: 'Agroindustrias',
+            y: agroindustrias,
         }, {
-            name: 'Internet Explorer',
-            y: 11.84
+            name: 'Contabilidad',
+            y: contabilidad,
         }, {
-            name: 'Firefox',
-            y: 10.85
+            name: 'Desarrollo Infantil',
+            y: desarrolloinfantil,
         }, {
-            name: 'Edge',
-            y: 4.67
+            name: 'Procesamiento Alimentos',
+            y: procesamientoalimentos,
         }, {
-            name: 'Safari',
-            y: 4.18
+            name: 'Desarrollo Software',
+            y: desarrollosoftware,
         }, {
-            name: 'Sogou Explorer',
-            y: 1.64
+            name: 'Mecanica',
+            y: mecanica,
         }, {
-            name: 'Opera',
-            y: 1.6
-        }, {
-            name: 'QQ',
-            y: 1.2
-        }, {
-            name: 'Other',
-            y: 2.61
+            name: 'Electricidad',
+            y: electricidad,
+        },{
+            name: 'Seguridad',
+            y: seguridad,
         }]
+    }]
+});
+</script>
+
+<!-- Script para tabla de etnias -->
+<script >
+  var mestizo = parseInt('{{ mestizo}}');
+  var afroecuatoriano = parseInt('{{ afroecuatoriano }}');
+  var indigena = parseInt('{{ indigena }}');
+  var blanco = parseInt('{{ blanco }}');
+  var montubio = parseInt('{{ montubio}}');
+  var amazonico = parseInt('{{ amazonico }}');
+  Highcharts.chart('etnias', {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Estadisticas por etnias de graduados'
+    },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+      point: {
+        valueSuffix: '%'
+      }
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: ' <b>{point.name}</b>: {point.percentage:.1f} %'
+        }
+      }
+    },
+    series: [{
+      name: 'Brands',
+      colorByPoint: true,
+      data: [
+        {
+          name: 'Mestizo',
+          y: mestizo,
+        },{
+          name: 'Afroamericano',
+          y: afroecuatoriano,
+        },{
+          name: 'Indígena',
+          y:indigena
+        },{
+          name:'Blanco',
+          y:blanco
+        },{
+          name:'Montubio',
+          y:montubio
+        },{
+          name:'Amazonico',
+          y:amazonico
+        },
+      ]
     }]
   });
 </script>
 
-{% endblock contenido %}
+<!-- Script para grafico opciones de titulación -->
+<script type="application/javascript">
+  var tesis = parseInt('{{ tesis }}');
+  var examen = parseInt('{{ examen }}');
+  Highcharts.chart('titulacion', {
+    chart: {
+      plotBackgroundColor: null,
+      plotBorderWidth: null,
+      plotShadow: false,
+      type: 'pie'
+    },
+    title: {
+      text: 'Estadisticas por método de titulación de graduados'
+    },
+    tooltip: {
+      pointFormat: ' Titulacion: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+      point: {
+        valueSuffix: '%'
+      }
+    },
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        }
+      }
+    },
+    series: [{
+      name: 'Brands',
+      colorByPoint: true,
+      data: [
+        {
+          name: 'Tesis',
+          y: tesis,
+        }, {
+          name: 'Examen Complexivo',
+          y: examen,
+        }
+      ]
+    }]
+  });
+</script>
 
+{% endblock javascripts %}

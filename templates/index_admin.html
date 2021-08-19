@@ -25,7 +25,7 @@
         <div class="icon">
           <i class="fas fa-users"></i>
         </div>
-        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+        <a href="{% url 'usuarioform' %}" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -38,7 +38,7 @@
         <div class="icon">
           <i class="fas fa-calendar-week"></i>
         </div>
-        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+        <a href="{% url 'capacitacionform' %}" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -51,7 +51,7 @@
         <div class="icon">
           <i class="fas fa-clipboard-list"></i>
         </div>
-        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+        <a href="{% url 'empleoform' %}" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -64,43 +64,65 @@
         <div class="icon">
           <i class="fas fa-store"></i>
         </div>
-        <a href="#" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
+        <a href="{% url 'emprendimientoform' %}" class="small-box-footer">Agregar<i class="fas fa-plus-circle"></i></a>
       </div>
     </div>
     <!-- ./col -->
   </div>
 
   <h4>Listado de alumnos</h4>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Cedula </th>
-        <th scope="col">Nombre </th>
-        <th scope="col">Apellido </th>
-        <th scope="col">Correo</th>
-        <th scope="col">Celular</th>
-        <th scope="col">Tecnología</th>
 
-      </tr>
+  <table id="admin" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
     </thead>
     <tbody>
-      {% if objeto %}
-      {% for objeto in objeto %} 
-      <tr>
-        <th scope="col">{{ objeto.cedula }}</th>
-        <th scope="col">{{ objeto.nombre }}</th>
-        <th scope="col">{{ objeto.apellido }}</th>
-        <th scope="col">{{ objeto.correo }}</th>
-        <th scope="col">{{ objeto.celular }}</th>
-        <th scope="col">{{ objeto.carrera }}</th>
-      </tr>
+      {% if admin %}
+      {% for admin in admin %}   
+       
+          <tr>
+              <td>{{ admin.cedula }}</td>
+              <td>{{ admin.nombre }}</td>
+              <td>{{ admin.apellido }}</td>
+              <td>{{ admin.correo }}</td>
+              <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a class="btn btn-primary" href="{% url 'graduadoeditar' admin.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'graduadoeliminar' admin.id %}" role="button">Eliminar</a>
+                </div>
+              </td>
+          </tr>
+      
       {% endfor %}
-      {% endif %}
+      {% endif %}  
+  
     </tbody>
+    <tfoot>
+        <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+        </tr>
+    </tfoot>
   </table>
 
 {% endblock contenido %}
-    
+
+
+{% block javascripts %}
+<script>
+  $(document).ready(function() {
+      $('#admin').DataTable();
+  } ); 
+</script>
+{% endblock javascripts %}
+  
     
     
     
