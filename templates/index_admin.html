@@ -70,7 +70,7 @@
     <!-- ./col -->
   </div>
 
-  <h4>Listado de alumnos</h4>
+  <h5>Listado de administradores</h5>
 
   <table id="admin" class="table table-striped" style="width:100%">
     <thead>
@@ -92,8 +92,8 @@
               <td>{{ admin.apellido }}</td>
               <td>{{ admin.correo }}</td>
               <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                <a class="btn btn-primary" href="{% url 'graduadoeditar' admin.id %}" role="button">Editar</a>
-                <a class="btn btn-danger" href="{% url 'graduadoeliminar' admin.id %}" role="button">Eliminar</a>
+                <a class="btn btn-primary" href="{% url 'admineditar' admin.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'admineliminar' admin.id %}" role="button">Eliminar</a>
                 </div>
               </td>
           </tr>
@@ -111,6 +111,130 @@
         </tr>
     </tfoot>
   </table>
+  <h5>Listado de capacitaciones</h5>
+  <table id="capacitaciones" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Enlace</th>
+            <th>Inversión</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% if capacitacion %}
+      {% for capacitacion in capacitacion %}   
+       
+          <tr>
+              <td>{{ capacitacion.titulo }}</td>
+              <td>{{ capacitacion.fecha }}</td>
+              <td>{{ capacitacion.hora }}</td>
+              <td>{{ capacitacion.enlace }}</td>
+              <td>{{ capacitacion.inversión }}</td>
+
+              <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a class="btn btn-primary" href="{% url 'capacitacioneditar' capacitacion.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'capacitacioneliminar' capacitacion.id %}" role="button">Eliminar</a>
+                </div>
+              </td>
+          </tr>
+      
+      {% endfor %}
+      {% endif %}  
+  
+    </tbody>
+    <tfoot>
+        <tr>
+          <th>Titulo</th>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Enlace</th>
+          <th>Inversión</th>
+        </tr>
+    </tfoot>
+  </table>
+  <h5>Listado de empleos</h5>
+  <table id="empleos" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Puesto</th>
+            <th>Objetivos</th>
+            <th>Experiencia</th>
+            <th>Habilidades</th>
+            <th>Contactos</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% if empleo %}
+      {% for empleo in empleo %}   
+       
+          <tr>
+              <td>{{ empleo.puesto }}</td>
+              <td>{{ empleo.objetivos }}</td>
+              <td>{{ empleo.experiencia }}</td>
+              <td>{{ empleo.habilidades }}</td>
+              <td>{{ empleo.contactos }}</td>
+              <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a class="btn btn-primary" href="{% url 'empleoeditar' empleo.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'empleoeliminar' empleo.id %}" role="button">Eliminar</a>
+                </div>
+              </td>
+          </tr>
+      
+      {% endfor %}
+      {% endif %}  
+  
+    </tbody>
+    <tfoot>
+        <tr>
+          <th>Puesto</th>
+          <th>Objetivos</th>
+          <th>Experiencia</th>
+          <th>Habilidades</th>
+          <th>Contactos</th>
+        </tr>
+    </tfoot>
+  </table>
+  <h5>Listado de emprendimientos</h5>
+  <table id="emprendimientos" class="table table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Descripción</th>
+            <th>Propietario</th>
+            <th>Contactos</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% if emprendimiento %}
+      {% for emprendimiento  in emprendimiento  %}   
+       
+          <tr>
+              <td>{{ emprendimiento.titulo}}</td>
+              <td>{{ emprendimiento.descripcion }}</td>
+              <td>{{ emprendimiento.propietario }}</td>
+              <td>{{ emprendimiento.contacto }}</td>
+              <td> <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <a class="btn btn-primary" href="{% url 'emprendimientoeditar' emprendimiento.id %}" role="button">Editar</a>
+                <a class="btn btn-danger" href="{% url 'emprendimientoeliminar' emprendimiento.id %}" role="button">Eliminar</a>
+                </div>
+              </td>
+          </tr>
+      
+      {% endfor %}
+      {% endif %}  
+  
+    </tbody>
+    <tfoot>
+        <tr>
+          <th>Titulo</th>
+          <th>Descripción</th>
+          <th>Propietario</th>
+          <th>Contactos</th>
+        </tr>
+    </tfoot>
+  </table>
 
 {% endblock contenido %}
 
@@ -120,6 +244,17 @@
   $(document).ready(function() {
       $('#admin').DataTable();
   } ); 
+
+  $(document).ready(function() {
+    $('#capacitaciones').DataTable();
+  } ); 
+  $(document).ready(function() {
+  $('#empleos').DataTable();
+  } );
+  $(document).ready(function() {
+  $('#emprendimientos').DataTable();
+  } );
+
 </script>
 {% endblock javascripts %}
   

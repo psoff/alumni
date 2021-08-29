@@ -7,16 +7,16 @@
 
 {% block titulo %}
 <div class="col-6">
-    <h1 class="m-0">Empleo</h1>
+    <h1 class="m-0">Bolsa de Empleo</h1>
   </div><!-- /.col -->
 {% endblock titulo %}
 
 {% block contenido %}
 
-<form method="post" >
+<form method="post" enctype="multipart/form-data" >
 
   {% csrf_token %}
-  {{ form.as_p }}
+  {{ form }}
  
      <button type="submit" class="btn btn-primary col-12 ">Guardar</button>
 

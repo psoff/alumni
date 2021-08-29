@@ -16,32 +16,21 @@
 
 
 <div class="container col-sm-6">
-<form method="post" >
+<form method="post" action="" enctype="multipart/form-data">
 
     {% csrf_token %}
-    {{ form }}
 
+        <div class="fieldWrapper">
+            {{form.as_p}}
+        </div>
+        
+       <button type="submit" value="Update" class="btn btn-primary d-grid gap-2 col-4 mx-auto">Guardar</button>
 
-       <button type="submit" class="btn btn-primary d-grid gap-2 col-6 mx-auto">Guardar</button>
-  
-     
-  </form>
-<script src="{% static 'js/jquery-input-mask-phone-number.min.js' %}"></script>
-<script src="{% static 'js/jquery-ui.js' %}"></script>
-<script src="{% static 'js/jquery-ui-timepicker-addon' %}"></script>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-<script>
-$(document).ready(function() {
-    $('.datepicker').datepicker();
-});
-</script>
-<script>
-  $( function() {
-      // $( "#id_birth_date" ).datetimepicker({ dateFormat: 'yy-mm-dd', maxDate: 0, controlType: 'select'}).attr("autocomplete", "off") ;
-      // $( "#id_birth_date" ).timepicker({ dateFormat: 'yy-mm-dd', maxDate: 0, controlType: 'select'}).attr("autocomplete", "off") ;
-      $( "#id_birth_date" ).datepicker({ dateFormat: 'yy-mm-dd' }).attr("autocomplete", "off") ;
-  });
-</script>    
+ 
+</div>
+
+   
 </div>
 {% endblock contenido %}
+
+  

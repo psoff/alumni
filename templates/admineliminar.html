@@ -7,7 +7,7 @@
 
 {% block titulo %}
 <div class="col-sm-6 mb-3">
-    <h1 class="m-0">Capacitaciones y Eventos</h1>
+    <h1 class="m-0">Eliminar Administrador</h1>
   </div><!-- /.col -->
 {% endblock titulo %}
 
@@ -16,7 +16,7 @@
 <form method="post" >
 
     {% csrf_token %}
-    <h3>¿Desea eliminar el registro de {{ object.nombre}}?</h3>
+    <h3>¿Desea eliminar el registro de {{ admin.nombre}}?</h3>
     <button type="submit" class="btn btn-danger mb-3 col-12">Sí,eliminar</button>
     <a class="btn btn-default mb-3 col-12" href=" {% url 'estadistica' %}">Cancelar</a>
    

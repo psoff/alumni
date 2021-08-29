@@ -3,21 +3,27 @@
 
 {% block contenido %}
 
-{% for objeto in objeto %}
-<div class="container col-md-10">
-  <div class="card mb-3 ">
-    <img src="{{ objeto.portada }}" class="card-img-bottom" width="250" height="350">
-    
-    <div class="card-body">
-      <h5 class="card-title">{{ objeto.titulo }}</h5>
-      <p class="card-text">{{ objeto.descripcion }}</p>
-      <p class="card-text">{{ objeto.propietario }}</p>
-      <p class="card-text">{{ objeto.contacto }}</p>
-    </div>
-  </div>
+<h2 class="d-inline-block mb-4 text-primary">Emprendimientos</h2>
 
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    
+    {% for emprendimiento in emprendimientos %}
+      
+    
+      
+    <div class="card">
+      <img src={{emprendimiento.portada.url}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{emprendimiento.titulo}}</h5>
+        <p class="card-text">{{emprendimiento.descripcion}}</p>
+        <p class="card-text">{{emprendimiento.propietario}}</p>
+        <p class="card-text">{{emprendimiento.contacto}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
 </div>
-{% endfor %}
 
 {% endblock contenido %}
   

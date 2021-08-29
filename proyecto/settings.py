@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'aplicacion',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,15 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
-    'aplicacion',
+    'widget_tweaks',
     'rest_framework.authtoken',
-    'bootstrap_datepicker_plus',
-    
-    
-    
+       
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -128,9 +126,14 @@ USE_L10N = True
 USE_TZ = True
 
 LOGIN_URL = '/ingresar/'
-LOGIN_REDIRECT_URL = reverse_lazy('datosform')
+LOGIN_REDIRECT_URL=reverse_lazy('index')
 LOGOUT_REDIRECT_URL = '/index'
 
+
+# if Graduado.is_staff  == "True":
+  #   LOGIN_REDIRECT_URL = reverse_lazy('indexadmin')
+# elif user.is_staff == "False":
+  #   LOGIN_REDIRECT_URL = reverse_lazy('datosform')
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% load static %}
 
 {% block contenido %}
@@ -30,10 +31,10 @@
                                {% csrf_token %}
                                
                                   <div class="form-group">
-                                      <input type="text" class="form-control form-control-user" placeholder="Cédula" name="username">  
+                                    {{ form.username|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su username' }}
                                   </div>
                                   <div class="form-group">
-                                      <input type="password" class="form-control form-control-user" placeholder="Contraseña" name="password">
+                                    {{ form.password|add_class:'form-control'|attr:'autocomplete:off'|attr:'placeholder:Ingrese su password' }}
                                        
                                   </div>
                                   <button class="btn btn-primary" type="submit" role="button">Ingresar</button>

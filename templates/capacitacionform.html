@@ -13,15 +13,11 @@
 
 {% block contenido %}
 
-<form method="post" >
+<form method="post"  enctype="multipart/form-data" >
 
   {% csrf_token %}
-  <div class="mb-3">
-    <label for="formFile" class="form-label">Portada</label>
-    <input class="form-control" type="file" id="formFile">
-  </div>
   {{ form }}
-  <br>
+ 
      <button type="submit" class="btn btn-primary mb-3 col-12">Guardar</button>
    
 </form>

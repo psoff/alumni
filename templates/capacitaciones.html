@@ -3,26 +3,32 @@
 
 {% block contenido %}
 
-<h2 class="d-inline-block mb-4 text-primary">Eventos y Capacitaciones</h2>
-<div class="row mb-2">
+
+<div class="mb-4"><h2 class="d-inline-block mb-4 text-primary">Eventos y Capacitaciones</h2></div>
   
-  {% for objeto in objeto  %}
-  
-  <div class="col-md-6">
-    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-      <div class="col p-4 d-flex flex-column position-static">
-        <strong class="d-inline-block mb-2 text-primary"><h3>{{ objeto.titulo}}</h3></strong>
-        <h3 class="mb-0">{{ objeto.fecha}}</h3>
-        <div class="mb-1 text-muted">{{ objeto.hora}}</div>
-        <p class="card-text mb-auto">{{ objeto.enlace}}</p>
-        <a  class="stretched-link">{{ objeto.inversion}}</a>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+  {% for capacitacion in capacitaciones  %}
+  <div class="card mb-3" style="max-width: 740px;">
+    <div class="row g-0">
+      <div class="col-md-5">
+        <img src={{capacitacion.portada.url }} class="img-fluid rounded-start" alt="...">
       </div>
-      <div class="col-auto d-none d-lg-block">
-        <img src="{{ objeto.portada }}" class="card-img-bottom" width="250" height="350"> 
+      <div class="col-md-7">
+        <div class="card-body">
+          <h3 class="card-title text-success">{{capacitacion.titulo}}</h3>
+          <h5 class="card-text">Fecha: {{capacitacion.fecha}}</h5>
+          <h5 class="mb-2">Hora: {{capacitacion.hora}}</h5>
+          <h4 class="card-text mb-auto"> Inversión: {{capacitacion.inversión}}</h4>
+          <h3 class="card-text mb-2"> Enlace de inscripción:</h3>
+          <a href="" class="stretched-link">{{capacitacion.enlace}}</a>
+        </div>
       </div>
     </div>
   </div>
+  
+  {% endfor %}
 
 </div>
-{% endfor %}
+
 {% endblock contenido %}

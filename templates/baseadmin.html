@@ -34,9 +34,13 @@
   <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}">
   <!-- summernote -->
   <link rel="stylesheet" href="{% static 'css/summernote-bs4.min.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">    
- 
+
+  
+
+
+   
+    
+  
   
   {% block head %}
 
@@ -57,9 +61,7 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{% url 'indexadmin' %}" class="nav-link">Inicio</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+      <a class="btn btn-danger" href="{% url 'logout' %}" role="button">Cerrar Sesión </a>
     </ul>
  
   </nav>
@@ -76,17 +78,6 @@
       <span class="brand-text font-weight-light">Alumni</span>
     </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{% static 'lib/adminlte/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
-        </div>
-      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
@@ -203,13 +194,7 @@
     </div>
   </section>  
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
-    </div>
-  </footer>
+ 
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -265,9 +250,8 @@
 <script src="{% static 'lib/highchart/modules/exporting.js' %}"></script>
 <script src="{% static 'lib/highchart/modules/export-data.js' %}"></script>
 <script src="{% static 'lib/highchart/modules/accessibility.js' %}"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+
+
 {% block javascripts %}
 
 

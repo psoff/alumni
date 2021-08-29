@@ -3,27 +3,22 @@
 
 {% block contenido %}
 
-<h3>Eventos y Capacitaciones</h3>
+<h3>Bolsa de Empleo</h3>
 <div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    
-    {% for objeto in objeto %}
-    <div class="card">
-    <img src="{{ objeto.portada }}" class="card-img-bottom" width="250" height="350">
-      <div class="card-body">
-        <h5 class="card-title">{{ objeto.puesto }}</h5>
-        <p class="card-text">{{ objeto.objetivos }}</p>
-        <p class="card-text">{{ objeto.experiencia }}</p>
-        <p class="card-text">{{ objeto.habilidades }}</p>
-        <p class="card-text">{{ objeto.contactos }}</p>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-  
-</div>
-
-
-
+      {% for empleo in empleos %}
+      <div class="col">
+        <div class="card">
+          <img src={{empleo.portada.url}} class="card-img-top" width="500" height="500">
+          <div class="card-body" >
+            <h5 class="card-title">{{empleo.puesto}}</h5>
+            <p class="card-text">Objetivos del puesto: {{ empleo.objetivos }}</p>
+            <p class="card-text">Experiencia requerida {{ empleo.experiecia }}</p>
+            <p class="card-text">Habilidades Necesarias{{ empleo.habilidades }}</p>
+            <p class="card-text"><small class="text-muted">Contactos: {{ empleo.contactos }}</small></p>
+          </div>
+        </div>
+      </div>   
+      {% endfor %}
+</div>  
 
 {% endblock contenido %}
